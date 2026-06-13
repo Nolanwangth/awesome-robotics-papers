@@ -565,8 +565,6 @@ def generate_readme(data):
                 # Build links column
                 if p.get("arxiv_url"):
                     links.append(f"[arXiv]({p['arxiv_url']})")
-                elif p.get("pdf_url"):
-                    links.append(f"[PDF]({p['pdf_url']})")
                 if p.get("project_url"):
                     links.append(f"[Project]({p['project_url']})")
                 if p.get("code_url"):
