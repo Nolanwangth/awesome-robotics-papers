@@ -1103,6 +1103,32 @@
       "crawled_at": "2026-06-13T08:16:25.932301+00:00"
     },
     {
+      "id": "19a14e7caf28",
+      "title": "FEAST: A Flexible Mealtime-Assistance System Towards In-the-Wild Personalization",
+      "authors": [
+        "Rajat Kumar Jenamani",
+        "Tom Silver",
+        "Ben Dodson",
+        "Shiqin Tong",
+        "Anthony Song",
+        "Yuting Yang",
+        "Ziang Liu",
+        "Benjamin Howe",
+        "Aimee Whitneck",
+        "Tapomayukh Bhattacharjee"
+      ],
+      "conference": "RSS 2025",
+      "category": "Best Paper",
+      "session": "",
+      "abstract": "",
+      "arxiv_url": null,
+      "openreview_url": null,
+      "project_url": null,
+      "code_url": null,
+      "pdf_url": "https://www.roboticsproceedings.org/rss21/p083.pdf",
+      "crawled_at": "2026-06-13T10:59:33.962198+00:00"
+    },
+    {
       "id": "057153f846e3",
       "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
       "authors": [
@@ -2019,6 +2045,27 @@
       "crawled_at": "2026-06-13T08:16:25.935527+00:00"
     },
     {
+      "id": "310b9b6a0472",
+      "title": "Solving Multi-Agent Safe Optimal Control with Distributed Epigraph Form MARL",
+      "authors": [
+        "Songyuan Zhang",
+        "Oswin So",
+        "Mitchell Black",
+        "Zachary Serlin",
+        "Chuchu Fan"
+      ],
+      "conference": "RSS 2025",
+      "category": "Best Paper Finalist",
+      "session": "",
+      "abstract": "",
+      "arxiv_url": "https://arxiv.org/abs/2504.15425",
+      "openreview_url": null,
+      "project_url": null,
+      "code_url": null,
+      "pdf_url": "https://www.roboticsproceedings.org/rss21/p027.pdf",
+      "crawled_at": "2026-06-13T10:59:33.960251+00:00"
+    },
+    {
       "id": "6715ba960458",
       "title": "Uni-NaVid: A Video-based Vision-Language-Action Model for Unifying Embodied Navigation Tasks",
       "authors": [
@@ -2130,6 +2177,6 @@
     }
   ],
   "metadata": {
-    "last_updated": "2026-06-13T08:43:01.315524+00:00"
+    "last_updated": "2026-06-13T11:01:57.239612+00:00"
   }
 }

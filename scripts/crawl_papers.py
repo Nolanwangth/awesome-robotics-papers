@@ -44,6 +44,7 @@ KEYWORDS = [
 
     # ── Reinforcement Learning ──
     r"\brl\b",                          # RL abbreviation
+    r"\bmarl\b",                         # Multi-Agent RL
     r"reinforcement learning",          # full term
     r"reward\s+(?:function|learning|shaping|model)",
     r"inverse reinforcement",           # IRL
@@ -86,6 +87,19 @@ KEYWORDS = [
     r"robot\s*(?:learn|policy|control|skill|foundation)",
     r"policy.*(?:optimization|gradient|search)",
 ]
+
+# ── Best Paper Awards ─────────────────────────────────────────────
+# Award winners always included regardless of keyword match.
+BEST_PAPERS_CORL = {
+    "Learning a Unified Policy for Position and Force Control in Legged Loco-Manipulation": "Best Paper",
+    "Visual Imitation Enables Contextual Humanoid Control": "Best Student Paper",
+}
+
+BEST_PAPERS_RSS = {
+    "FEAST: A Flexible Mealtime-Assistance System Towards In-the-Wild Personalization": "Best Paper",
+    "FAST: Efficient Action Tokenization for Vision-Language-Action Models": "Best Paper Finalist",
+    "Solving Multi-Agent Safe Optimal Control with Distributed Epigraph Form MARL": "Best Paper Finalist",
+}
 
 # ── Helpers ─────────────────────────────────────────────────────────
 
@@ -234,11 +248,12 @@ def crawl_corl_2025():
         openreview_url = paper_url if "openreview" in paper_url.lower() else None
 
         pid = _paper_id("CoRL 2025", title)
+        category = BEST_PAPERS_CORL.get(title, "Oral")
         papers.append({
             "id": pid,
             "title": title,
             "conference": "CoRL 2025",
-            "category": "Oral",
+            "category": category,
             "authors": [],
             "abstract": tldr,
             "arxiv_url": arxiv_url or None,
@@ -323,14 +338,18 @@ def crawl_rss_2025():
 
         # Determine category
         session = session_map.get(num, "")
-        category = "Accepted"
-        if title in award_winners:
-            category = "Best Paper"
-        elif session in RSS_EMBODIED_SESSIONS:
-            category = "Oral"
+        category = BEST_PAPERS_RSS.get(title, "Accepted")
+        if category == "Accepted":
+            if title in award_winners:
+                category = "Best Paper"
+            elif session in RSS_EMBODIED_SESSIONS:
+                category = "Oral"
+
+        # Always include best papers, others filtered by relevance
+        is_best = category in ("Best Paper", "Best Student Paper", "Best Paper Finalist")
 
         # Relevance filter (title only for initial pass)
-        if not _keyword_match(title) and category not in ("Best Paper",):
+        if not _keyword_match(title) and not is_best:
             continue
 
         # Build authors list
@@ -468,7 +487,7 @@ def generate_readme(data):
         lines.append(f"## {conf}\n")
 
         # Group by category
-        for cat in ["Best Paper", "Oral", "Highlight", "Accepted"]:
+        for cat in ["Best Paper", "Best Student Paper", "Best Paper Finalist", "Oral", "Highlight", "Accepted"]:
             cat_papers = [p for p in conf_papers if p["category"] == cat]
             if not cat_papers:
                 continue

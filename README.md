@@ -2,7 +2,7 @@
 
 A curated list of **embodied AI / robot learning** papers from top robotics conferences.
 
-Last updated: 2026-06-13  |  Papers: 108
+Last updated: 2026-06-13  |  Papers: 110
 
 ## Contents
 - [CoRL 2025](#corl-2025)
@@ -58,6 +58,18 @@ Last updated: 2026-06-13  |  Papers: 108
 | 42 | X-Sim: Cross-Embodiment Learning via Real-to-Sim-to-Real | [arXiv](https://arxiv.org/abs/2505.07096) · [Project](https://portal-cornell.github.io/X-Sim/) |
 
 ## RSS 2025
+
+### Best Paper
+
+| # | Title | Links |
+|---|-------|-------|
+| 1 | FEAST: A Flexible Mealtime-Assistance System Towards In-the-Wild Personalization | [PDF](https://www.roboticsproceedings.org/rss21/p083.pdf) |
+
+### Best Paper Finalist
+
+| # | Title | Links |
+|---|-------|-------|
+| 1 | Solving Multi-Agent Safe Optimal Control with Distributed Epigraph Form MARL | [arXiv](https://arxiv.org/abs/2504.15425) · [PDF](https://www.roboticsproceedings.org/rss21/p027.pdf) |
 
 ### Oral
 
