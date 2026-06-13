@@ -5,13 +5,21 @@ A curated list of **embodied AI / robot learning** papers from top robotics conf
 Last updated: 2026-06-13  |  Papers: 148
 
 ## Contents
-- [CoRL 2025](#corl-2025)
-- [RSS 2025](#rss-2025)
-- [RSS 2026](#rss-2026)
+- [CoRL](#corl)
+- [RSS](#rss)
 
-## CoRL 2025
+## CoRL
 
-### Oral
+### 2025
+
+#### Best Paper
+
+| # | Title | Links |
+|---|-------|-------|
+| 1 | Learning a Unified Policy for Position and Force Control in Legged Loco-Manipulation | [arXiv](https://arxiv.org/abs/2505.20829) |
+| 2 | Visual Imitation Enables Contextual Humanoid Control | [arXiv](https://arxiv.org/abs/2505.03729) · [Code](https://github.com/hongsukchoi/VideoMimic) |
+
+#### Oral
 
 | # | Title | Links |
 |---|-------|-------|
@@ -32,47 +40,43 @@ Last updated: 2026-06-13  |  Papers: 148
 | 15 | ImMimic: Cross-Domain Imitation from Human Videos via Mapping and Interpolation | [arXiv](https://arxiv.org/abs/2509.10952) |
 | 16 | KineSoft: Learning Proprioceptive Manipulation Policies with Soft Robot Hands | [arXiv](https://arxiv.org/abs/2503.01078) |
 | 17 | Latent Theory of Mind: A Decentralized Diffusion Architecture for Cooperative Manipulation | [arXiv](https://arxiv.org/abs/2505.09144) |
-| 18 | Learning a Unified Policy for Position and Force Control in Legged Loco-Manipulation | [arXiv](https://arxiv.org/abs/2505.20829) |
-| 19 | LocoFormer: Generalist Locomotion via Long-context Adaptation | [arXiv](https://arxiv.org/abs/2509.23745) · [Project](https://generalist-locomotion.github.io/) · [Code](https://github.com/minliu-cs/locformer) · [OpenReview](https://openreview.net/pdf/09f1069aefe99e01a46eef1033e2dbd007f687bd.pdf) |
-| 20 | Non-conflicting Energy Minimization in Reinforcement Learning based Robot Control | [arXiv](https://arxiv.org/abs/2509.01765) |
-| 21 | Omni-Perception: Omnidirectional Collision Avoidance of Legged Robots in Dynamic Environments | [arXiv](https://arxiv.org/abs/2505.19214) |
-| 22 | One View, Many Worlds: Single-Image to 3D Object Meets Generative Domain Randomization for One-Shot 6D Pose Estimation | [arXiv](https://arxiv.org/abs/2509.07978) · [Code](https://github.com/GZWSAMA/OnePoseviaGen) |
-| 23 | Planning from Point Clouds over Continuous Actions for Multi-object Rearrangement | [arXiv](https://arxiv.org/abs/2509.04645) |
-| 24 | ReWiND: Language-Guided Rewards Teach Robot Policies without New Demonstrations | [arXiv](https://arxiv.org/abs/2505.10911) |
-| 25 | Reactive In-Air Clothing Manipulation with Confidence-Aware Dense Correspondence and Visuotactile Affordance | [arXiv](https://arxiv.org/abs/2509.03889) · [OpenReview](https://openreview.net/attachment?id=sXoaNAECCK&name=pdf) |
-| 26 | Real-Time Out-of-Distribution Failure Prevention via Multi-Modal Reasoning | [arXiv](https://arxiv.org/abs/2505.10547) |
-| 27 | Real2Render2Real: Scaling Robot Data Without Dynamics Simulation or Robot Hardware | [arXiv](https://arxiv.org/abs/2505.09601) · [Code](https://github.com/BerkeleyAutomation/Real2Render2Real) |
-| 28 | RoboArena: Distributed Real-World Evaluation of Generalist Robot Policies | [arXiv](https://arxiv.org/abs/2506.18123) · [Project](https://roboarena.org) · [Code](https://github.com/RoboArena/roboarena) |
-| 29 | SAIL: Faster-than-Demonstration Execution of Imitation Learning Policies | [arXiv](https://arxiv.org/abs/2506.11948) |
-| 30 | SAVOR: Skill Affordance Learning from Visuo-Haptic Perception for Robot-Assisted Bite Acquisition | [arXiv](https://arxiv.org/abs/2506.02353) |
-| 31 | Sampling-based System Identification with Active Exploration for Legged Sim2Real Learning | [arXiv](https://arxiv.org/abs/2505.14266) · [Code](https://github.com/LeCAR-Lab/SPI-Active) |
-| 32 | ScrewSplat: An End-to-End Method for Articulated Object Recognition | [arXiv](https://arxiv.org/abs/2508.02146) · [Code](https://github.com/seungyeon-k/ScrewSplat-public) |
-| 33 | Stack It Up!: 3D Stable Structure Generation from 2D Hand-drawn Sketch | [arXiv](https://arxiv.org/abs/2508.02093) |
-| 34 | Steering Your Diffusion Policy with Latent Space Reinforcement Learning | [arXiv](https://arxiv.org/abs/2506.15799) · [Project](https://diffusion-steering.github.io/) · [Code](https://github.com/nakamotoo/dsrl_pi0) |
-| 35 | Streaming Flow Policy: Simplifying diffusion/flow-matching policies by treating action trajectories as flow trajectories | [arXiv](https://arxiv.org/abs/2505.21851) |
-| 36 | Tactile Beyond Pixels: Multisensory Touch Representations for Robot Manipulation | [arXiv](https://arxiv.org/abs/2506.14754) |
-| 37 | The Sound of Simulation: Learning Multimodal Sim-to-Real Robot Policies with Generative Audio | [arXiv](https://arxiv.org/abs/2507.02864) · [Project](https://renhao-wang.github.io/sound-of-sim/) |
-| 38 | Training Strategies for Efficient Embodied Reasoning | [arXiv](https://arxiv.org/abs/2505.08243) |
-| 39 | Versatile Loco-Manipulation through Flexible Interlimb Coordination | [arXiv](https://arxiv.org/abs/2506.07876) |
-| 40 | Vision-Language-Action Model with Open-World Generalization | [arXiv](https://arxiv.org/abs/2504.16054) |
-| 41 | Visual Imitation Enables Contextual Humanoid Control | [arXiv](https://arxiv.org/abs/2505.03729) · [Code](https://github.com/hongsukchoi/VideoMimic) |
-| 42 | X-Sim: Cross-Embodiment Learning via Real-to-Sim-to-Real | [arXiv](https://arxiv.org/abs/2505.07096) · [Project](https://portal-cornell.github.io/X-Sim/) |
+| 18 | LocoFormer: Generalist Locomotion via Long-context Adaptation | [arXiv](https://arxiv.org/abs/2509.23745) · [Project](https://generalist-locomotion.github.io/) · [Code](https://github.com/minliu-cs/locformer) · [OpenReview](https://openreview.net/pdf/09f1069aefe99e01a46eef1033e2dbd007f687bd.pdf) |
+| 19 | Non-conflicting Energy Minimization in Reinforcement Learning based Robot Control | [arXiv](https://arxiv.org/abs/2509.01765) |
+| 20 | Omni-Perception: Omnidirectional Collision Avoidance of Legged Robots in Dynamic Environments | [arXiv](https://arxiv.org/abs/2505.19214) |
+| 21 | One View, Many Worlds: Single-Image to 3D Object Meets Generative Domain Randomization for One-Shot 6D Pose Estimation | [arXiv](https://arxiv.org/abs/2509.07978) · [Code](https://github.com/GZWSAMA/OnePoseviaGen) |
+| 22 | Planning from Point Clouds over Continuous Actions for Multi-object Rearrangement | [arXiv](https://arxiv.org/abs/2509.04645) |
+| 23 | ReWiND: Language-Guided Rewards Teach Robot Policies without New Demonstrations | [arXiv](https://arxiv.org/abs/2505.10911) |
+| 24 | Reactive In-Air Clothing Manipulation with Confidence-Aware Dense Correspondence and Visuotactile Affordance | [arXiv](https://arxiv.org/abs/2509.03889) · [OpenReview](https://openreview.net/attachment?id=sXoaNAECCK&name=pdf) |
+| 25 | Real-Time Out-of-Distribution Failure Prevention via Multi-Modal Reasoning | [arXiv](https://arxiv.org/abs/2505.10547) |
+| 26 | Real2Render2Real: Scaling Robot Data Without Dynamics Simulation or Robot Hardware | [arXiv](https://arxiv.org/abs/2505.09601) · [Code](https://github.com/BerkeleyAutomation/Real2Render2Real) |
+| 27 | RoboArena: Distributed Real-World Evaluation of Generalist Robot Policies | [arXiv](https://arxiv.org/abs/2506.18123) · [Project](https://roboarena.org) · [Code](https://github.com/RoboArena/roboarena) |
+| 28 | SAIL: Faster-than-Demonstration Execution of Imitation Learning Policies | [arXiv](https://arxiv.org/abs/2506.11948) |
+| 29 | SAVOR: Skill Affordance Learning from Visuo-Haptic Perception for Robot-Assisted Bite Acquisition | [arXiv](https://arxiv.org/abs/2506.02353) |
+| 30 | Sampling-based System Identification with Active Exploration for Legged Sim2Real Learning | [arXiv](https://arxiv.org/abs/2505.14266) · [Code](https://github.com/LeCAR-Lab/SPI-Active) |
+| 31 | ScrewSplat: An End-to-End Method for Articulated Object Recognition | [arXiv](https://arxiv.org/abs/2508.02146) · [Code](https://github.com/seungyeon-k/ScrewSplat-public) |
+| 32 | Stack It Up!: 3D Stable Structure Generation from 2D Hand-drawn Sketch | [arXiv](https://arxiv.org/abs/2508.02093) |
+| 33 | Steering Your Diffusion Policy with Latent Space Reinforcement Learning | [arXiv](https://arxiv.org/abs/2506.15799) · [Project](https://diffusion-steering.github.io/) · [Code](https://github.com/nakamotoo/dsrl_pi0) |
+| 34 | Streaming Flow Policy: Simplifying diffusion/flow-matching policies by treating action trajectories as flow trajectories | [arXiv](https://arxiv.org/abs/2505.21851) |
+| 35 | Tactile Beyond Pixels: Multisensory Touch Representations for Robot Manipulation | [arXiv](https://arxiv.org/abs/2506.14754) |
+| 36 | The Sound of Simulation: Learning Multimodal Sim-to-Real Robot Policies with Generative Audio | [arXiv](https://arxiv.org/abs/2507.02864) · [Project](https://renhao-wang.github.io/sound-of-sim/) |
+| 37 | Training Strategies for Efficient Embodied Reasoning | [arXiv](https://arxiv.org/abs/2505.08243) |
+| 38 | Versatile Loco-Manipulation through Flexible Interlimb Coordination | [arXiv](https://arxiv.org/abs/2506.07876) |
+| 39 | Vision-Language-Action Model with Open-World Generalization | [arXiv](https://arxiv.org/abs/2504.16054) |
+| 40 | X-Sim: Cross-Embodiment Learning via Real-to-Sim-to-Real | [arXiv](https://arxiv.org/abs/2505.07096) · [Project](https://portal-cornell.github.io/X-Sim/) |
 
-## RSS 2025
+## RSS
 
-### Best Paper
+### 2025
 
-| # | Title | Links |
-|---|-------|-------|
-| 1 | FEAST: A Flexible Mealtime-Assistance System Towards In-the-Wild Personalization | — |
-
-### Best Paper Finalist
+#### Best Paper
 
 | # | Title | Links |
 |---|-------|-------|
-| 1 | Solving Multi-Agent Safe Optimal Control with Distributed Epigraph Form MARL | [arXiv](https://arxiv.org/abs/2504.15425) |
+| 1 | FAST: Efficient Action Tokenization for Vision-Language-Action Models | — |
+| 2 | FEAST: A Flexible Mealtime-Assistance System Towards In-the-Wild Personalization | — |
+| 3 | Solving Multi-Agent Safe Optimal Control with Distributed Epigraph Form MARL | [arXiv](https://arxiv.org/abs/2504.15425) |
 
-### Oral
+#### Oral
 
 | # | Title | Links |
 |---|-------|-------|
@@ -101,56 +105,10 @@ Last updated: 2026-06-13  |  Papers: 148
 | 23 | Sketch-to-Skill: Bootstrapping Robot Learning with Human Drawn Trajectory Sketches | [arXiv](https://arxiv.org/abs/2503.11918) |
 | 24 | You Only Teach Once: Learn One-Shot Bimanual Robotic Manipulation from Video Demonstrations | [arXiv](https://arxiv.org/abs/2501.14208) |
 
-### Accepted
+### ⚠ RSS 2026
 
-| # | Title | Links |
-|---|-------|-------|
-| 1 | A Unified and General Humanoid Whole-Body Controller for Fine-Grained Locomotion | [arXiv](https://arxiv.org/abs/2502.03206) |
-| 2 | A low-cost and lightweight 6 DoF bimanual arm for dynamic and contact-rich manipulation | [arXiv](https://arxiv.org/abs/2502.16908) |
-| 3 | AMO: Adaptive Motion Optimization for Hyper-Dexterous Humanoid Whole-Body Control | [arXiv](https://arxiv.org/abs/2505.03738) |
-| 4 | ASAP: Aligning Simulation and Real-World Physics for Learning Agile Humanoid Whole-Body Skills | [arXiv](https://arxiv.org/abs/2502.01143) |
-| 5 | Action Flow Matching for Lifelong Learning | — |
-| 6 | BeamDojo: Learning Agile Humanoid Locomotion on Sparse Footholds | [arXiv](https://arxiv.org/abs/2502.10363) |
-| 7 | Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies | [arXiv](https://arxiv.org/abs/2503.08558) |
-| 8 | CodeDiffuser: Attention-Enhanced Diffusion Policy via VLM-Generated Code for Instruction Ambiguity | [arXiv](https://arxiv.org/abs/2506.16652) |
-| 9 | ConRFT: A Reinforced Fine-tuning Method for VLA Models via Consistency Policy | — |
-| 10 | Curating Demonstrations using Online Experience | [arXiv](https://arxiv.org/abs/2503.03707) |
-| 11 | Demonstrating Berkeley Humanoid Lite: An Open-source, Accessible, and Customizable 3D-printed Humanoid Robot | [arXiv](https://arxiv.org/abs/2504.17249) |
-| 12 | Demonstrating GPU Parallelized Robot Simulation and Rendering for Generalizable Embodied AI with ManiSkill3 | [arXiv](https://arxiv.org/abs/2410.00425) |
-| 13 | Demonstrating LEAP Hand v2: Low-Cost, Easy-to-Assemble, High-Performance Hand for Robot Learning | [arXiv](https://arxiv.org/abs/2309.06440) |
-| 14 | DexWild: Dexterous Human Interactions for In-the-Wild Robot Policies | — |
-| 15 | FACTR: Force-Attending Curriculum Training for Contact-Rich Policy Learning | [arXiv](https://arxiv.org/abs/2502.17432) |
-| 16 | FAST: Efficient Action Tokenization for Vision-Language-Action Models | — |
-| 17 | Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | [arXiv](https://arxiv.org/abs/2502.19645) |
-| 18 | Flow Matching Ergodic Coverage | [arXiv](https://arxiv.org/abs/2504.17872) |
-| 19 | Gait-Net-augmented Implicit Kino-dynamic MPC for Dynamic Variable-frequency Humanoid Locomotion over Discrete Terrains | [arXiv](https://arxiv.org/abs/2502.02934) |
-| 20 | GeoDEx: A Unified Geometric Framework for Tactile Dexterous and Extrinsic Manipulation under Force Uncertainty | — |
-| 21 | HOMIE: Humanoid Loco-Manipulation with Isomorphic Exoskeleton Cockpit | [arXiv](https://arxiv.org/abs/2502.13013) |
-| 22 | Is Your Imitation Learning Policy Better than Mine? Policy Comparison with Near-Optimal Stopping | [arXiv](https://arxiv.org/abs/2503.10966) |
-| 23 | LangWBC: Language-directed Humanoid Whole-Body Control via End-to-end Learning | [arXiv](https://arxiv.org/abs/2504.21738) |
-| 24 | Learned Perceptive Forward Dynamics Model for Safe and Platform-aware Robotic Navigation | [arXiv](https://arxiv.org/abs/2504.19322) |
-| 25 | Learning Getting-Up Policies for Real-World Humanoid Robots | [arXiv](https://arxiv.org/abs/2502.12152) |
-| 26 | Learning Humanoid Standing-up Control across Diverse Postures | [arXiv](https://arxiv.org/abs/2502.08378) |
-| 27 | Map Space Belief Prediction for Manipulation-Enhanced Mapping | [arXiv](https://arxiv.org/abs/2502.20606) |
-| 28 | Meta-Learning Online Dynamics Model Adaptation in Off-Road Autonomous Driving | [arXiv](https://arxiv.org/abs/2504.16923) |
-| 29 | NaVILA: Legged Robot Vision-Language-Action Model for Navigation | [arXiv](https://arxiv.org/abs/2412.04453) |
-| 30 | PP-Tac: Paper Picking Using Omnidirectional Tactile Feedback in Dexterous Robotic Hands | [arXiv](https://arxiv.org/abs/2504.16649) |
-| 31 | Physics-Driven Data Generation for Contact-Rich Manipulation via Trajectory Optimization | [arXiv](https://arxiv.org/abs/2502.20382) |
-| 32 | RAPID: Robust and Agile Planner Using Inverse Reinforcement Learning for Vision-Based Drone Navigation | [arXiv](https://arxiv.org/abs/2502.02054) |
-| 33 | RLDG: Robotic Generalist Policy Distillation via Reinforcement Learning | [arXiv](https://arxiv.org/abs/2412.09858) |
-| 34 | RUKA: Rethinking the Design of Humanoid Hands with Learning | [arXiv](https://arxiv.org/abs/2504.13165) |
-| 35 | Reactive Diffusion Policy: Slow-Fast Visual-Tactile Policy Learning for Contact-Rich Manipulation | [arXiv](https://arxiv.org/abs/2503.02881) |
-| 36 | Resolving Conflicting Constraints in Multi-Agent Reinforcement Learning with Layered Safety | — |
-| 37 | RoboVerse: A Unified Platform, Benchmark and Dataset for Scalable and Generalizable Robot Learning | — |
-| 38 | Robot Learning with Super-Linear Scaling | — |
-| 39 | Robust Peg-in-Hole Assembly under Uncertainties via Compliant and Interactive Contact-Rich Manipulation | [arXiv](https://arxiv.org/abs/2506.22766) |
-| 40 | Uni-NaVid: A Video-based Vision-Language-Action Model for Unifying Embodied Navigation Tasks | — |
-| 41 | Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | [arXiv](https://arxiv.org/abs/2504.02792) |
-| 42 | π₀: A Vision-Language-Action Flow Model for General Robot Control | — |
-
-## RSS 2026
-
-### Accepted
+The following 38 papers are accepted at RSS 2026 but the conference has not yet taken place (July 2026). 
+Oral / Best Paper / Highlight designations are not yet available.
 
 | # | Title | Links |
 |---|-------|-------|

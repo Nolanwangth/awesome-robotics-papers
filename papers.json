@@ -225,7 +225,7 @@
       "id": "feb11d3e21fe",
       "title": "Learning a Unified Policy for Position and Force Control in Legged Loco-Manipulation",
       "conference": "CoRL 2025",
-      "category": "Oral",
+      "category": "Best Paper",
       "authors": [],
       "abstract": "Unified policy framework for position and force control in legged loco-manipulation.",
       "arxiv_url": "https://arxiv.org/abs/2505.20829",
@@ -524,7 +524,7 @@
       "id": "db184d0ed697",
       "title": "Visual Imitation Enables Contextual Humanoid Control",
       "conference": "CoRL 2025",
-      "category": "Oral",
+      "category": "Best Student Paper",
       "authors": [],
       "abstract": "Large-scale visual imitation enables humanoids to act contextually in varied environments.",
       "arxiv_url": "https://arxiv.org/abs/2505.03729",
@@ -1092,7 +1092,7 @@
         "Sergey Levine"
       ],
       "conference": "RSS 2025",
-      "category": "Accepted",
+      "category": "Best Paper Finalist",
       "session": "",
       "abstract": "",
       "arxiv_url": null,
@@ -2747,6 +2747,6 @@
     }
   ],
   "metadata": {
-    "last_updated": "2026-06-13T11:08:19.791454+00:00"
+    "last_updated": "2026-06-13T11:21:45.979385+00:00"
   }
 }

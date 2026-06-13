@@ -478,8 +478,12 @@ def merge_papers(existing_data, new_papers):
             if not ep.get("abstract") and np.get("abstract"):
                 ep["abstract"] = np["abstract"]
                 updated += 1
-            # Update category if better info available (e.g., Best Paper)
-            if np.get("category") in ("Best Paper", "Oral") and ep.get("category") in ("Accepted",):
+            # Update category if higher priority (Best Paper > Oral > Accepted)
+            CAT_PRIORITY = {"Best Paper": 0, "Best Student Paper": 1, "Best Paper Finalist": 2,
+                            "Oral": 3, "Highlight": 4, "Accepted": 5}
+            old_prio = CAT_PRIORITY.get(ep.get("category"), 99)
+            new_prio = CAT_PRIORITY.get(np.get("category"), 99)
+            if new_prio < old_prio:
                 ep["category"] = np["category"]
                 updated += 1
         else:
@@ -527,6 +531,44 @@ def generate_readme(data):
     papers = data["papers"]
     last_updated = data["metadata"].get("last_updated", "N/A")[:10]
 
+    # Build structure: conference -> year -> category -> [papers]
+    # Category priority: Best Paper, Oral, Highlight, then rest
+    CAT_PRIORITY = ["Best Paper", "Oral", "Highlight"]
+    CAT_LABELS = {"Best Paper": "Best Paper", "Oral": "Oral", "Highlight": "Highlight"}
+
+    # Map concrete categories to user categories
+    CAT_MAP = {
+        "Best Paper": "Best Paper",
+        "Best Student Paper": "Best Paper",
+        "Best Paper Finalist": "Best Paper",
+    }
+
+    conferences = {}
+    for p in papers:
+        # Extract parent conference and year
+        parts = p["conference"].split()
+        parent = parts[0]  # "CoRL" or "RSS"
+        year = parts[1]    # "2025" or "2026"
+        cat = CAT_MAP.get(p["category"], p["category"])
+
+        key = (parent, year, cat)
+        if key not in conferences:
+            conferences[key] = []
+        conferences[key].append(p)
+
+    # Sort: by parent (CoRL first), year descending, category by priority
+    parent_order = {"CoRL": 0, "RSS": 1}
+    year_order = {"2026": 0, "2025": 1}
+    cat_order = {c: i for i, c in enumerate(CAT_PRIORITY + ["Accepted", "Poster"])}
+
+    sorted_keys = sorted(conferences.keys(),
+                         key=lambda k: (parent_order.get(k[0], 99),
+                                        year_order.get(k[1], 99),
+                                        cat_order.get(k[2], 99)))
+
+    # Only show categories the user asked for (Best Paper, Oral, Highlight)
+    sorted_keys = [k for k in sorted_keys if k[2] in CAT_PRIORITY]
+
     lines = [
         "# Awesome Robotics Papers",
         "",
@@ -535,47 +577,73 @@ def generate_readme(data):
         f"Last updated: {last_updated}  |  Papers: {len(papers)}",
         "",
         "## Contents",
-        "- [CoRL 2025](#corl-2025)",
-        "- [RSS 2025](#rss-2025)",
-        "- [RSS 2026](#rss-2026)",
-        "",
     ]
 
-    for conf in ["CoRL 2025", "RSS 2025", "RSS 2026"]:
-        conf_papers = [p for p in papers if p["conference"] == conf]
-        if not conf_papers:
-            continue
+    # Build contents
+    seen_parent = set()
+    for parent, year, cat in sorted_keys:
+        if parent not in seen_parent:
+            lines.append(f"- [{parent}](#{parent.lower()})")
+            seen_parent.add(parent)
 
-        lines.append(f"## {conf}\n")
+    lines.append("")
 
-        # Group by category
-        for cat in ["Best Paper", "Best Student Paper", "Best Paper Finalist", "Oral", "Highlight", "Accepted"]:
-            cat_papers = [p for p in conf_papers if p["category"] == cat]
-            if not cat_papers:
-                continue
+    # Build sections
+    current_parent = None
+    current_year = None
+    for parent, year, cat in sorted_keys:
+        paps = conferences[(parent, year, cat)]
 
-            lines.append(f"### {cat}\n")
-            lines.append("| # | Title | Links |")
-            lines.append("|---|-------|-------|")
+        if parent != current_parent:
+            lines.append(f"## {parent}\n")
+            current_parent = parent
+            current_year = None
 
-            for i, p in enumerate(cat_papers, 1):
-                title = p["title"]
-                links = []
+        if year != current_year:
+            lines.append(f"### {year}\n")
+            current_year = year
 
-                # Build links column
-                if p.get("arxiv_url"):
-                    links.append(f"[arXiv]({p['arxiv_url']})")
-                if p.get("project_url"):
-                    links.append(f"[Project]({p['project_url']})")
-                if p.get("code_url"):
-                    links.append(f"[Code]({p['code_url']})")
-                if p.get("openreview_url"):
-                    links.append(f"[OpenReview]({p['openreview_url']})")
+        # Category heading
+        cat_label = CAT_LABELS.get(cat, cat)
+        lines.append(f"#### {cat_label}\n")
+        lines.append("| # | Title | Links |")
+        lines.append("|---|-------|-------|")
 
-                links_str = " · ".join(links) if links else "—"
-                lines.append(f"| {i} | {title} | {links_str} |")
+        for i, p in enumerate(paps, 1):
+            title = p["title"]
+            links = []
 
-            lines.append("")
+            if p.get("arxiv_url"):
+                links.append(f"[arXiv]({p['arxiv_url']})")
+            if p.get("project_url"):
+                links.append(f"[Project]({p['project_url']})")
+            if p.get("code_url"):
+                links.append(f"[Code]({p['code_url']})")
+            if p.get("openreview_url"):
+                links.append(f"[OpenReview]({p['openreview_url']})")
+
+            links_str = " · ".join(links) if links else "—"
+            lines.append(f"| {i} | {title} | {links_str} |")
+
+        lines.append("")
+
+    # Add RSS 2026 preprint note if there are unclassified papers
+    rss26_papers = [p for p in papers if p["conference"] == "RSS 2026"]
+    if rss26_papers:
+        lines.append("### ⚠ RSS 2026")
+        lines.append("")
+        lines.append(f"The following {len(rss26_papers)} papers are accepted at RSS 2026 but the conference has not yet taken place (July 2026). ")
+        lines.append("Oral / Best Paper / Highlight designations are not yet available.")
+        lines.append("")
+        lines.append("| # | Title | Links |")
+        lines.append("|---|-------|-------|")
+        for i, p in enumerate(sorted(rss26_papers, key=lambda x: x["title"]), 1):
+            links = []
+            if p.get("arxiv_url"):
+                links.append(f"[arXiv]({p['arxiv_url']})")
+            links_str = " · ".join(links) if links else "—"
+            lines.append(f"| {i} | {p['title']} | {links_str} |")
+        lines.append("")
 
     lines.append("---")
     lines.append("Auto-generated by [crawl_papers.py](scripts/crawl_papers.py)")
