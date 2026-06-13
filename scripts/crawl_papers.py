@@ -396,6 +396,67 @@ def fetch_rss_awards():
     return award_titles
 
 
+# ── RSS 2026 Scraper (via arxiv) ─────────────────────────────────
+
+RSS_2026_ARXIV_QUERY = "all:%22RSS+2026%22+OR+all:%22RSS+XXII%22"
+
+def crawl_rss_2026():
+    """Crawl RSS 2026 papers from arxiv (conference hasn't published proceedings yet)."""
+    print("\n=== RSS 2026 ===")
+    papers = []
+    url = f"https://export.arxiv.org/api/query?search_query={RSS_2026_ARXIV_QUERY}&max_results=100&sortBy=submittedDate&sortOrder=descending"
+    try:
+        time.sleep(ARXIV_DELAY)
+        req = Request(url, headers={"User-Agent": "awesome-robotics-papers/1.0"})
+        with urlopen(req, timeout=30) as resp:
+            xml = resp.read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"  ✗ Failed to query arxiv for RSS 2026: {e}")
+        return papers
+
+    entries = re.findall(
+        r"<entry>.*?<id>(.*?)</id>.*?<title>(.*?)</title>.*?<summary>(.*?)</summary>.*?<arxiv:primary_category[^>]*term=\"(.*?)\"",
+        xml, re.DOTALL
+    )
+    print(f"  Found {len(entries)} arxiv entries tagged RSS 2026")
+
+    for link, title, summary, category in entries:
+        link = link.strip()
+        title = re.sub(r"\s+", " ", title.strip())
+        summary = re.sub(r"\s+", " ", summary.strip())[:500]
+
+        # Extract arxiv ID
+        m = re.search(r"abs/(\d+\.\d+)", link)
+        if not m:
+            continue
+        arxiv_id = m.group(1)
+        arxiv_url = f"https://arxiv.org/abs/{arxiv_id}"
+
+        # Relevance filter
+        if not _keyword_match(title) and not _keyword_match(summary):
+            continue
+
+        pid_unique = _paper_id("RSS 2026", title)
+        papers.append({
+            "id": pid_unique,
+            "title": title,
+            "authors": [],
+            "conference": "RSS 2026",
+            "category": "Accepted",
+            "session": "",
+            "abstract": summary,
+            "arxiv_url": arxiv_url,
+            "openreview_url": None,
+            "project_url": None,
+            "code_url": None,
+            "pdf_url": arxiv_url.replace("abs", "pdf"),
+            "crawled_at": datetime.now(timezone.utc).isoformat(),
+        })
+
+    print(f"  → {len(papers)} relevant papers from RSS 2026")
+    return papers
+
+
 # ── Merge & Update ─────────────────────────────────────────────────
 
 def merge_papers(existing_data, new_papers):
@@ -476,10 +537,11 @@ def generate_readme(data):
         "## Contents",
         "- [CoRL 2025](#corl-2025)",
         "- [RSS 2025](#rss-2025)",
+        "- [RSS 2026](#rss-2026)",
         "",
     ]
 
-    for conf in ["CoRL 2025", "RSS 2025"]:
+    for conf in ["CoRL 2025", "RSS 2025", "RSS 2026"]:
         conf_papers = [p for p in papers if p["conference"] == conf]
         if not conf_papers:
             continue
@@ -503,14 +565,14 @@ def generate_readme(data):
                 # Build links column
                 if p.get("arxiv_url"):
                     links.append(f"[arXiv]({p['arxiv_url']})")
+                elif p.get("pdf_url"):
+                    links.append(f"[PDF]({p['pdf_url']})")
                 if p.get("project_url"):
                     links.append(f"[Project]({p['project_url']})")
                 if p.get("code_url"):
                     links.append(f"[Code]({p['code_url']})")
                 if p.get("openreview_url"):
                     links.append(f"[OpenReview]({p['openreview_url']})")
-                if p.get("pdf_url"):
-                    links.append(f"[PDF]({p['pdf_url']})")
 
                 links_str = " · ".join(links) if links else "—"
                 lines.append(f"| {i} | {title} | {links_str} |")
@@ -545,8 +607,11 @@ def main():
     # Crawl RSS 2025
     rss_papers = crawl_rss_2025()
 
+    # Crawl RSS 2026 (from arxiv)
+    rss_2026_papers = crawl_rss_2026()
+
     # Merge
-    all_new = corl_papers + rss_papers
+    all_new = corl_papers + rss_papers + rss_2026_papers
     data = merge_papers(data, all_new)
 
     # Enrich with arxiv links
